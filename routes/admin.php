@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Backend\AdminProfileController;
+use App\Http\Controllers\Backend\BrandController;
 
 Route::middleware(['admin:admin'])->group(function () {
     Route::get('login', [AdminController::class, 'loginForm']);
@@ -23,3 +24,5 @@ Route::middleware(['auth:sanctum,admin', config('jetstream.auth_session'), 'veri
         return view('admin.index');
     })->name('dashboard')->middleware('auth:admin');
 });
+
+Route::resource('brands', BrandController::class)->except(['create', 'show']);
