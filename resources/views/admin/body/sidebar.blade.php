@@ -42,7 +42,9 @@
                 </ul>
             </li>
 
-            <li class="treeview {{ request()->is('admin/categories*') ? 'active font-weight-bolder' : ''}}">
+            <li class="treeview {{ request()->is(
+                'admin/categories*',
+            ) ? 'active font-weight-bolder' : ''}}">
                 <a href="#">
                     <i data-feather="mail"></i> <span>Category </span>
                     <span class="pull-right-container">
@@ -50,12 +52,11 @@
             </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li class="{{ request()->is('admin/categories*') ? 'active font-weight-bolder' : ''}}">
+                    <li class="{{ request()->is('admin/categories') ? 'active font-weight-bolder' : ''}}">
                         <a href="{{ route('admin.categories.index') }}"><i class="ti-more"></i>All Category</a>
                     </li>
-                    <li class="{{ request()->is('admin/subcategories*') ? 'active font-weight-bolder' : ''}}">
-{{--                        <a href="{{ route('admin.subcategories.index') }}"><i class="ti-more"></i>All SubCategory</a>--}}
-                        <a href="#"><i class="ti-more"></i>All SubCategory</a>
+                    <li class="{{ request()->is('admin/categories/subcategories') ? 'active font-weight-bolder' : ''}}">
+                        <a href="{{ route('admin.categories.subcategories.index') }}"><i class="ti-more"></i>All SubCategory</a>
                     </li>
                 </ul>
             </li>

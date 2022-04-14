@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
-use App\Http\Controllers\Backend\{AdminProfileController, BrandController, CategoryController};
+use App\Http\Controllers\Backend\{AdminProfileController, BrandController, CategoryController, SubCategoryController};
 
 Route::middleware(['admin:admin'])->group(function () {
     Route::get('login', [AdminController::class, 'loginForm']);
@@ -26,3 +26,8 @@ Route::middleware(['auth:sanctum,admin', config('jetstream.auth_session'), 'veri
 
 Route::resource('brands', BrandController::class)->except(['create', 'show']);
 Route::resource('categories', CategoryController::class)->except(['create', 'show']);
+
+Route::prefix('categories')->as('categories.')->group(function () {
+    Route::resource('subcategories', SubCategoryController::class)->except(['create', 'show']);
+    Route::get('/subcategories/ajax/{category_id}', [SubCategoryController::class, 'getSubCategory']);
+});
