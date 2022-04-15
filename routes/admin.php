@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
-use App\Http\Controllers\Backend\{AdminProfileController, BrandController, CategoryController, SubCategoryController};
+use App\Http\Controllers\Backend\{AdminProfileController, BrandController, CategoryController, SubCategoryController, SubSubCategoryController};
 
 Route::middleware(['admin:admin'])->group(function () {
     Route::get('login', [AdminController::class, 'loginForm']);
@@ -30,4 +30,8 @@ Route::resource('categories', CategoryController::class)->except(['create', 'sho
 Route::prefix('categories')->as('categories.')->group(function () {
     Route::resource('subcategories', SubCategoryController::class)->except(['create', 'show']);
     Route::get('/subcategories/ajax/{category_id}', [SubCategoryController::class, 'getSubCategory']);
+});
+
+Route::prefix('categories/subcategories')->as('categories.subcategories.')->group(function () {
+    Route::resource('subsubcategories', SubSubCategoryController::class)->except(['create', 'show']);
 });

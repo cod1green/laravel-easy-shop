@@ -58,6 +58,9 @@
                     <li class="{{ request()->is('admin/categories/subcategories') ? 'active font-weight-bolder' : ''}}">
                         <a href="{{ route('admin.categories.subcategories.index') }}"><i class="ti-more"></i>All SubCategory</a>
                     </li>
+                    <li class="{{ request()->is('admin/categories/subcategories/subsubcategories') ? 'active font-weight-bolder' : ''}}">
+                        <a href="{{ route('admin.categories.subcategories.subsubcategories.index') }}"><i class="ti-more"></i>All Sub-SubCategory</a>
+                    </li>
                 </ul>
             </li>
 
